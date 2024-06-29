@@ -28,6 +28,8 @@ class EmployeeGrievance(models.Model):
         ('pending', 'Pending'), ('on_going', 'On Going'), ('resolved', 'Resolved')
     ], string="Status",default="pending",
         help="Grievance Status")
+    document_id = fields.Many2one('ir.attachment',string='Document')
+
 
     def on_going_grievance(self):
         if self.status == 'pending':
