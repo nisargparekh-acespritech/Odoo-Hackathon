@@ -132,9 +132,13 @@
                         <t t-set="title">Your Grievances</t>
                     </center>
                 </t>
-                <!-- <div t-if="not orders" class="alert alert-warning" role="alert">
-                  There are currently no Grievance for your account.
-              </div> -->
+                <!-- <a href="/grievance/portal" style="float: right;margin-top: -50px;color:blue;text-decoration: none;border-radius: 5px;border: 1px solid #007bff;cursor: pointer;
+                ">+ New </a> -->
+                <a href="/grievance/portal" style="float: right;margin-top: -50px;color:blue;text-decoration: none;border-radius: 5px;border: 1px solid #007bff;cursor: pointer;
+                ">
+                    <button > </button>
+                    <!-- <button style="float: right;margin-top: -50px;color:blue;">+ New </button> -->
+                    + New</a>
                 <t t-if="records" t-call="portal.portal_table">
                     <thead>
                         <tr class="active">
