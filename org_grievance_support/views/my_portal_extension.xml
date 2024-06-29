@@ -8,9 +8,9 @@
                         <t t-call="portal.portal_docs_entry" t-if="False"/>
                         <t t-call="portal.portal_docs_entry">
                             <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
-                            <t t-set="title">Grievance Registration</t>
-                            <t t-set="text">click for apply grievance registration</t>
-                            <t t-set="url" t-value="'/grievance/registration'"/>
+                            <t t-set="title">Grievance Portal</t>
+                            <t t-set="text">Click for open grievance portal</t>
+                            <t t-set="url" t-value="'/grievance/portal'"/>
                             <t t-set="config_card" t-value="True"/>
                         </t>
                     </div>
