@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="grievance_list">
+            <field name="name">Employee Grievance</field>
+            <field name="model">employee.grievance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="grievance_type_id"/>
+                    <field name="department_id"/>
+                    <field name="description"/>
+                    <field name="severity" widget="priority"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="grievance_form">
+            <field name="name">Employee Grievance</field>
+            <field name="model">employee.grievance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="grievance_type_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="department_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="description"/>
+                            <field name="severity" widget="priority"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="org_grievance_support.action_grievance">
+            <field name="name">Employee Grievance</field>
+            <field name="res_model">employee.grievance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+
+        <menuitem name="Grievance Support" id="org_grievance_support.menu_root"/>
+
+        <!-- menu categories -->
+
+
+        <!-- actions -->
+
+        <menuitem name="Grievance" id="org_grievance_support.menu_grievance" parent="org_grievance_support.menu_root" sequence="1" action="org_grievance_support.action_grievance"/>
+        <menuitem name="Configuration" id="org_grievance_support.menu_configuration" parent="org_grievance_support.menu_root" sequence="2" />
+
+
+    </data>
+</odoo>
