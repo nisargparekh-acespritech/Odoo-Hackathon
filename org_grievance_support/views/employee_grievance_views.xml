@@ -33,6 +33,7 @@
                             <field name="department_id" options="{'no_create': True, 'no_create_edit':True}"/>
                             <field name="description"/>
                             <field name="severity" widget="priority"/>
+                            <field name="document_id" widget="url"/>
                         </group>
                     </sheet>
                 </form>
