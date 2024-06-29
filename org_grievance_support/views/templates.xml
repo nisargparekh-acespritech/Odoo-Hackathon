@@ -131,5 +131,41 @@
             </t>
         </template>
 
+        <template id="portal_my_grievances" name="My Grievances">
+          <t t-call="portal.portal_layout">
+              <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+              <t t-call="portal.portal_searchbar">
+                  <t t-set="title">Your Grievances</t>
+              </t>
+              <div t-if="not orders" class="alert alert-warning" role="alert">
+                  There are currently no Grievance for your account.
+              </div>
+              <t t-if="orders" t-call="portal.portal_table">
+                  <thead>
+                      <tr class="active">
+                          <th class="text-center">Gravience #</th>
+                          <th class="text-center">Grievance Type</th>
+                          <th class="text-center">Department</th>
+                          <th class="text-end">Date</th>
+                          <th class="text-center"/>
+                      </tr>
+                  </thead>
+                  <t t-foreach="orders" t-as="order">
+                      <tr>
+                          <!-- <td><a t-att-href="order.get_portal_url()"><t t-out="order.name"/></a></td> -->
+                          <td class="text-center"><t t-out="order.employee_id.name"/></td>
+                          <td class="text-center"><t t-out="order.grievance_type_id.name"/></td>
+                          <td class="text-center"><t t-out="order.department_id.name"/></td>
+                          <td class="text-end">
+                              <span t-field="order.create_date" t-options="{'widget': 'date'}"/>&amp;nbsp;
+                              <span class='d-none d-md-inline' t-field="order.create_date" t-options="{'time_only': True}"/>
+                          </td>
+                      </tr>
+                  </t>
+              </t>
+          </t>
+      </template>
+
     </data>
 </odoo>

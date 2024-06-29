@@ -14,6 +14,17 @@
                             <t t-set="config_card" t-value="True"/>
                         </t>
                     </div>
+
+                <div class="o_portal_category row g-2 mt-3" id="portal_common_category">
+                        <t t-call="portal.portal_docs_entry" t-if="False"/>
+                        <t t-call="portal.portal_docs_entry">
+                            <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                            <t t-set="title">My Grievance</t>
+                            <t t-set="text">Grievance</t>
+                            <t t-set="url" t-value="'/my/grievance'"/>
+                            <t t-set="config_card" t-value="True"/>
+                        </t>
+                    </div>
             </xpath>
         </template>
     </data>

@@ -20,5 +20,25 @@
             <field name="implied_ids" eval="[(4, ref('org_grievance_employee'))]"/>
         </record>
 
+        <record model="ir.rule" id="created_user_app">
+            <field name="name">Users can only access their own Grieevance</field>
+            <field name="model_id" ref="org_grievance_support.model_employee_grievance"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('org_grievance_support.org_grievance_user'))]"/>
+        </record>
+        <record model="ir.rule" id="created_user_emp_app">
+            <field name="name">employee can only access their own Grieevance</field>
+            <field name="model_id" ref="org_grievance_support.model_employee_grievance"/>
+            <field name="domain_force">[('employee_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('org_grievance_support.org_grievance_employee'))]"/>
+        </record>
+        <record id="grievance_admin_user" model="ir.rule">
+            <field name="name">employee.grievance.admin</field>
+            <field name="model_id" ref="org_grievance_support.model_employee_grievance"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('org_grievance_support.org_grievance_admin'))]"/>
+        </record>
+
+
     </data>
 </odoo>

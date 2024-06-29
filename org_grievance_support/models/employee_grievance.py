@@ -8,6 +8,7 @@ class EmployeeGrievance(models.Model):
     _description = 'Employee Grievance'
     _rec_name = "employee_id"
 
+    name = fields.Char(string="Name")
     employee_id = fields.Many2one(
         "hr.employee", string="Employee", required=True)
     grievance_type_id = fields.Many2one(
@@ -29,6 +30,14 @@ class EmployeeGrievance(models.Model):
     ], string="Status",default="pending",
         help="Grievance Status")
     document_id = fields.Many2one('ir.attachment',string='Document')
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['name'] = 'GRP' + self.env['ir.sequence'].next_by_code(
+                   'grievance.reference')
+        res = super().create(vals_list)
+        return res
 
 
     def on_going_grievance(self):
