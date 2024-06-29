@@ -13,6 +13,7 @@
                     <field name="department_id"/>
                     <field name="description"/>
                     <field name="severity" widget="priority"/>
+                    <field name="status"/>
                 </tree>
             </field>
         </record>
@@ -22,6 +23,9 @@
             <field name="model">employee.grievance</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                    </header>
                     <sheet>
                         <group>
                             <field name="employee_id"/>
