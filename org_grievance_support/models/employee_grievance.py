@@ -8,6 +8,7 @@ class EmployeeGrievance(models.Model):
     _description = 'Employee Grievance'
     _rec_name = "employee_id"
 
+    name = fields.Char(string="Name")
     employee_id = fields.Many2one(
         "hr.employee", string="Employee", required=True)
     grievance_type_id = fields.Many2one(
@@ -31,9 +32,18 @@ class EmployeeGrievance(models.Model):
     document_id = fields.Many2one('ir.attachment',string='Document')
     is_resolve = fields.Boolean(compute="_compute_is_resolve")
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['name'] = 'GRP/' + self.env['ir.sequence'].next_by_code(
+                   'grievance.reference')
+        res = super().create(vals_list)
+        return res
+
     def _compute_is_resolve(self):
         for record in self:
-            if self.env.user.
+            if self.env.user:
+                pass
 
     def send_notification(self,status):
         mail_template_id = self.env.ref("org_grievance_support.employee_notification_mail_template")

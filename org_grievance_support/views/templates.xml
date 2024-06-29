@@ -7,10 +7,7 @@
                 <div class="container mt-5">
                     <div id="wrap">
                         <div class="oc-sheet clearfix">
-                            <form action="/submit_data"
-                                  method="post" name="formOrg" role="form"
-                                  style="z-index:1 !important; position:relative !important"
-                                  enctype="multipart/form-data">
+                            <form action="/submit_data" method="post" name="formOrg" role="form" style="z-index:1 !important; position:relative !important" enctype="multipart/form-data">
                                 <fieldset id="fs_data">
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
@@ -70,7 +67,7 @@
                                     <div class="form-group">
                                         <label for="severity">Severity:</label>
                                         <select name="severity" id="severity" class="form-control">
-                                        <option value="" selected="1" disabled="1">-- Select Severity --</option>
+                                            <option value="" selected="1" disabled="1">-- Select Severity --</option>
                                             <option value="0">Very Low</option>
                                             <option value="1">Low</option>
                                             <option value="2">Normal</option>
@@ -78,9 +75,10 @@
                                             <!-- Add more options as needed -->
                                         </select>
                                     </div>
-                                     <div class="form-group mt-3">
+                                    <div class="form-group mt-3">
                                         <label for="files">Select files:</label>
-                                        <input type="file" id="document" name="document" class="form-control-file" multiple="True"/><br/>
+                                        <input type="file" id="document" name="document" class="form-control-file" multiple="True"/>
+                                        <br/>
                                         <!-- <input type="file" id="document" name="document" class="form-control-file" required='1'/> -->
                                     </div>
                                     <div class="clearfix oe_login_buttons mt-3" style="margin-bottom:20px;">
@@ -100,14 +98,9 @@
                 <div class="container mt-5">
                     <div id="wrap1">
                         <div class="oc-sheet clearfix">
-                            <form id="registerMsg" method="post"
-                                  name="registerMsg" role="form"
-                                  style="z-index:1 !important; position:relative !important"
-                                  enctype="multipart/form-data">
-                                    <input type="hidden" name="csrf_token"
-                                       t-att-value="request.csrf_token()"/>
-                                    <fieldset
-                                            style="
+                            <form id="registerMsg" method="post" name="registerMsg" role="form" style="z-index:1 !important; position:relative !important" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <fieldset style="
                                                 width: 400px;
                                                 text-align: center;
                                                 margin-left: 30%;
@@ -119,15 +112,64 @@
 
                                                 /* height: 500px; */
                                                 display: block;
-                                                padding: 25px; border:solid #000 2px;"
-                                        >
-                                            <h3 align="center">Thank You!!! You are registered.... Your Grievance Ref : <t t-esc='grievance_id'/> </h3>
-                                            <br/>
-                                    </fieldset>
+                                                padding: 25px; border:solid #000 2px;">
+                                    <h3 align="center">Thank You!!! You are registered.... Your Grievance Ref : <t t-esc='grievance_id'/>
+                                    </h3>
+                                    <br/>
+                                </fieldset>
                             </form>
                         </div>
                     </div>
                 </div>
+            </t>
+        </template>
+
+        <template id="portal_my_grievances" name="My Grievances">
+            <t t-call="portal.portal_layout">
+
+                <t t-call="portal.portal_searchbar">
+                    <center>
+                        <t t-set="title">Your Grievances</t>
+                    </center>
+                </t>
+                <!-- <div t-if="not orders" class="alert alert-warning" role="alert">
+                  There are currently no Grievance for your account.
+              </div> -->
+                <t t-if="records" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-center">Grievance #</th>
+                            <th class="text-center">Employee</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Department</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center"/>
+                        </tr>
+                    </thead>
+
+                    <t t-if="records" t-foreach="records" t-as="record">
+                        <tr>
+                            <!-- <td><a t-att-href="order.get_portal_url()"><t t-out="order.name"/></a></td> -->
+                            <td class="text-center">
+                                <t t-out="record.name"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="record.employee_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="record.grievance_type_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="record.department_id.name"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="record.create_date" t-options="{'widget': 'date'}"/>
+&amp;nbsp;
+                                <span class='d-none d-md-inline' t-field="record.create_date" t-options="{'time_only': True}"/>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
             </t>
         </template>
 
