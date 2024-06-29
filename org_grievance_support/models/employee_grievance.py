@@ -29,7 +29,7 @@ class EmployeeGrievance(models.Model):
         ('pending', 'Pending'), ('on_going', 'On Going'), ('resolved', 'Resolved')
     ], string="Status",default="pending",
         help="Grievance Status")
-    document_id = fields.Many2one('ir.attachment',string='Document')
+    document_ids = fields.Many2many('ir.attachment',string='Documents')
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -79,3 +79,13 @@ class EmployeeGrievance(models.Model):
         if self.status == 'on_going':
             self.status = 'resolved'
             self.send_notification('Resolved')
+
+    def action_view_attachments(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Attachments',
+            'view_mode': 'kanban',
+            'res_model': 'ir.attachment',
+            'view_id': self.env.ref('mail.view_document_file_kanban').id,
+            'domain': [('id', 'in', self.document_ids.ids)],
+        }

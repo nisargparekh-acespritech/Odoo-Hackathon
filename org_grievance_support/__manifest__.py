@@ -5,20 +5,20 @@
     'summary': "Short (1 phrase/line) summary of the module's purpose",
 
     'description': """
-Long description of module's purpose
+Module regarding Organisation Grievance Support
     """,
 
-    'author': "My Company",
+    'author': "Team Code Crackers [NHYD]",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '17.0.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'website','portal'],
+    'depends': ['base', 'hr', 'website','portal','mail'],
 
     # always loaded
     'data': [
@@ -34,7 +34,6 @@ Long description of module's purpose
         'views/grievance_type_views.xml',
         'views/dashboard_menu.xml',
     ],
-    # only loaded in demonstration mode
     'assets': {
         'web.assets_backend': [
             '/org_grievance_support/static/src/js/dashboard.js',
