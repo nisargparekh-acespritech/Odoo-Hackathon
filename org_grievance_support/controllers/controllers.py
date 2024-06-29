@@ -4,16 +4,15 @@ from odoo.http import request
 
 class OrgGrievanceSupport(http.Controller):
 
-    @http.route('/grievance/registration', type='http', auth='public', website=True)
+    @http.route('/grievance/portal', type='http', auth='public', website=True)
     def document_upload(self, **kw):
         return request.render("org_grievance_support.my_controller_form")
 
-    @http.route('/my_controller/Submit', type='http', auth="public", website=True)
-    def submit_doc(self, **post):
+    @http.route('/submit_data', type='http', auth="public", website=True)
+    def submit_grievance_data(self, **post):
+        print("\n\n\n\n\n\n post=========>>",post)
         name = post.get('name')
         email = post.get('email')
-        print("\n\n\n-----name",name)
-        print("\n\n\n-----email",email)
 
         grievance_id = request.env['employee.grievance'].sudo().create({
             'employee_id':post.get('employee_id') if post.get('employee_id') else False,

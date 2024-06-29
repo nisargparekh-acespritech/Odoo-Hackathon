@@ -7,7 +7,7 @@
                 <div class="container mt-5">
                     <div id="wrap">
                         <div class="oc-sheet clearfix">
-                            <form action="/my_controller/Submit"
+                            <form action="/submit_data"
                                   method="post" name="formOrg" role="form"
                                   style="z-index:1 !important; position:relative !important"
                                   enctype="multipart/form-data">
@@ -16,7 +16,7 @@
 
                                     <div class="form-bg">
                                         <h3 width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF" border-collapse="collapse" align="center">
-                                        Registration Form
+                                        Grievance Portal
                                         </h3>
                                     </div>
                                     <t t-set="employee_ids" t-value="request.env['hr.employee'].search([])"/>
@@ -79,7 +79,9 @@
                                         </select>
                                     </div>
                                      <div class="form-group mt-3">
-                                        <input type="file" id="document" name="document" class="form-control-file" required='1'/>
+                                        <label for="files">Select files:</label>
+                                        <input type="file" id="document" name="document" class="form-control-file" multiple="True"/><br/>
+                                        <!-- <input type="file" id="document" name="document" class="form-control-file" required='1'/> -->
                                     </div>
                                     <div class="clearfix oe_login_buttons mt-3" style="margin-bottom:20px;">
                                         <button name="submitDocument" id="submit_document" class="btn btn-primary">Submit
