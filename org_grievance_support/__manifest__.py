@@ -24,6 +24,7 @@ Long description of module's purpose
     'data': [
         'security/ir.model.access.csv',
         'security/org_grievance_groups.xml',
+        'data/mail_template.xml',
         'data/grievance_type.xml',
         'views/templates.xml',
         'views/my_portal_extension.xml',

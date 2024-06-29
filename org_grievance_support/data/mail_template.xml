@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="employee_notification_mail_template" model="mail.template">
+            <field name="name">Send grievance notification</field>
+            <field name="model_id" ref="org_grievance_support.model_employee_grievance"/>
+            <field name="email_from">{{ctx.get('email_from')}}</field>
+            <field name="email_to">{{ object.employee_id.private_email }}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="subject">Regarding your grievance notification</field>
+            <field name="body_html" type="html">
+                <t t-set="status" t-value="ctx.get('status')"/>
+                <t t-set="user" t-value="ctx.get('user')"/>
+                <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+                    <p style="font-size: 16px; color: #333;">
+                        Dear User,
+                    </p>
+                    <p style="font-size: 16px; color: #333;">
+                        Your grievance status has been
+                        changed to <strong>
+                        <t t-esc="status"/>
+                    </strong> by user <strong>
+                    <t t-esc="user"/>
+                </strong>.
+            </p>
+            <p style="font-size: 14px; color: #666;">
+                        If you have any questions or need further assistance, please contact our support team.
+            </p>
+            <p style="font-size: 14px; color: #666;">
+                        Best regards,<br/>
+            <br/>
+                        The Support Team
+        </p>
+    </div>
+
+</field>
+</record>
+
+</data>
+</odoo>
