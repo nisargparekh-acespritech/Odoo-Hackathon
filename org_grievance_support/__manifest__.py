@@ -30,6 +30,14 @@ Long description of module's purpose
         'views/templates.xml',
         'views/employee_grievance_views.xml',
         'views/grievance_type_views.xml',
+        'views/dashboard_menu.xml',
     ],
     # only loaded in demonstration mode
+    'assets': {
+        'web.assets_backend': [
+            '/org_grievance_support/static/src/js/dashboard.js',
+            '/org_grievance_support/static/src/css/dashboard.css',
+            '/org_grievance_support/static/src/xml/dashboard.xml',
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js'
+    ]},
 }
