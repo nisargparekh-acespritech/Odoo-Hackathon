@@ -1,13 +1,24 @@
 <odoo>
     <data>
-        <record id="org_grievance_admin" model="res.groups">
-            <field name="name">Administrator</field>
-        </record>
-        <record id="org_grievance_employee" model="res.groups">
-            <field name="name">Employee</field>
+        <record model="ir.module.category" id="category_org_grievance">
+            <field name="name">Grievance</field>
+            <field name="description">Grievance</field>
+            <field name="sequence">5</field>
         </record>
         <record id="org_grievance_user" model="res.groups">
             <field name="name">User</field>
+            <field name="category_id" ref="category_org_grievance"/>
         </record>
+        <record id="org_grievance_employee" model="res.groups">
+            <field name="name">Employee</field>
+            <field name="category_id" ref="category_org_grievance"/>
+            <field name="implied_ids" eval="[(4, ref('org_grievance_user'))]"/>
+        </record>
+        <record id="org_grievance_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="category_org_grievance"/>
+            <field name="implied_ids" eval="[(4, ref('org_grievance_employee'))]"/>
+        </record>
+
     </data>
 </odoo>

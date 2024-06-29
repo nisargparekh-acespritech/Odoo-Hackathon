@@ -13,7 +13,9 @@
                     <field name="department_id"/>
                     <field name="description"/>
                     <field name="severity" widget="priority"/>
-                    <field name="status"/>
+                    <field name="status" widget="badge" decoration-success="status == 'on_going'" decoration-warning="status == 'pending'" decoration-info="status == 'resolved'" optional="show"/>
+                    <button name="on_going_grievance" type="object" string="On-going" invisible="status != 'pending'" class="btn btn-info"></button>
+                    <button name="resolve_grievance" type="object" string="Resolve" invisible="status != 'on_going'" groups="org_grievance_support.org_grievance_admin" class="btn btn-success"></button>
                 </tree>
             </field>
         </record>
@@ -33,6 +35,8 @@
                             <field name="department_id" options="{'no_create': True, 'no_create_edit':True}"/>
                             <field name="description"/>
                             <field name="severity" widget="priority"/>
+                            <field name="approver_id" />
+                            <field name="document_id" widget="url"/>
                         </group>
                     </sheet>
                 </form>
@@ -47,6 +51,17 @@
             <field name="res_model">employee.grievance</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <record model="ir.actions.act_window" id="org_grievance_support.action_my_grievance_requests">
+            <field name="name">My Grievances</field>
+            <field name="res_model">employee.grievance</field>
+            <field name="domain">[('approver_user_id','=',uid)]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="org_grievance_support.action_all_grievance_requests">
+            <field name="name">All Grievances</field>
+            <field name="res_model">employee.grievance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
         <!-- Top menu item -->
 
@@ -57,7 +72,11 @@
 
         <!-- actions -->
 
-        <menuitem name="Grievance" id="org_grievance_support.menu_grievance" parent="org_grievance_support.menu_root" sequence="1" action="org_grievance_support.action_grievance"/>
+        <menuitem name="Grievance" id="org_grievance_support.menu_grievance" parent="org_grievance_support.menu_root" sequence="1" />
+        <menuitem name="My Grievances" id="org_grievance_support.menu_my_requests" parent="org_grievance_support.menu_grievance" sequence="1" action="org_grievance_support.action_my_grievance_requests"/>
+        <menuitem name="All Grievances" id="org_grievance_support.menu_all_requests" parent="org_grievance_support.menu_grievance" sequence="2" action="org_grievance_support.action_all_grievance_requests" groups="org_grievance_support.org_grievance_admin"/>
+
+
         <menuitem name="Configuration" id="org_grievance_support.menu_configuration" parent="org_grievance_support.menu_root" sequence="2" />
 
 
