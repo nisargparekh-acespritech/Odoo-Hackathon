@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request
 
+class OrgGrievanceSupport(http.Controller):
 
-# class OrgGrievanceSupport(http.Controller):
-#     @http.route('/org_grievance_support/org_grievance_support', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+    @http.route('/my_controller', type='http', auth='public', website=True)
+    def document_upload(self, **kw):
+        return request.render("org_grievance_support.my_controller_form")
 
-#     @http.route('/org_grievance_support/org_grievance_support/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('org_grievance_support.listing', {
-#             'root': '/org_grievance_support/org_grievance_support',
-#             'objects': http.request.env['org_grievance_support.org_grievance_support'].search([]),
-#         })
-
-#     @http.route('/org_grievance_support/org_grievance_support/objects/<model("org_grievance_support.org_grievance_support"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('org_grievance_support.object', {
-#             'object': obj
-#         })
-
+    @http.route('/my_controller/Submit', type='http', auth="public", website=True)
+    def submit_doc(self, **post):
+        name = post.get('name')
+        email = post.get('email')
+        print("\n\n\n-----name",name)
+        print("\n\n\n-----email",email)
+        return request.render("org_grievance_support.RegisterMessage")

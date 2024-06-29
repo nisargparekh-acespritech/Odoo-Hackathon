@@ -18,17 +18,18 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','website','portal'],
+    'depends': ['base', 'hr', 'website','portal'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'security/org_grievance_groups.xml',
+        'data/grievance_type.xml',
+        'views/templates.xml',
         'views/my_portal_extension.xml',
+        'views/templates.xml',
+        'views/employee_grievance_views.xml',
+        'views/grievance_type_views.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
 }
-

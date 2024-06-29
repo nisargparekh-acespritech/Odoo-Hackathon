@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="grievance.type" id="grievance_type_harrassment">
+            <field name="name">Harrassment</field>
+        </record>
+        <record model="grievance.type" id="grievance_type_work_environment">
+            <field name="name">Work Environment</field>
+        </record>
+
+    </data>
+</odoo>

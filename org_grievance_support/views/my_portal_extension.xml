@@ -14,7 +14,6 @@
                             <t t-set="config_card" t-value="True"/>
                         </t>
                     </div>
-               
             </xpath>
         </template>
     </data>
