@@ -1,52 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="GrievanceDashboard">
-        <style>
-            .bg-draft {
-                background-color: #f96967;
-                color: white;
-            }
-
-            .bg-confirm {
-                background-color: #bce8f1;
-                color: #333;
-            }
-
-            .bg-inprogress {
-                background-color: #f2dede;
-                color: #333;
-            }
-
-            .custom-card {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-
-            .graph_view, .selling_product_graph_view {
-                box-shadow: 5px 11px 30px rgba(0, 0, 0, 0.1);
-                margin-bottom: 20px;
-                background: #fff;
-                padding: 15px;
-                border-radius: 5px;
-            }
-
-            @media (max-width: 768px) {
-                .graph_view, .selling_product_graph_view {
-                    margin-left: 0;
-                    margin-right: 0;
-                }
-
-                .oh-card-body {
-                    text-align: center;
-                    padding-bottom: 10px;
-                }
-
-                .row-cols-md-2 > * {
-                    flex: 0 0 100%;
-                    max-width: 100%;
-                }
-            }
-        </style>
         <div class="oh_dashboards h-100 overflow-x-auto">
             <div class="mt-3">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
@@ -128,10 +82,9 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div>
-                                <div class="graph_view">
-                                    <canvas id="grievance_bar"></canvas>
-                                </div>
+                            <div class="graph_view">
+                                <h2>Grievance Bar</h2>
+                                <canvas id="grievance_bar"></canvas>
                             </div>
                         </div>
                     </div>
