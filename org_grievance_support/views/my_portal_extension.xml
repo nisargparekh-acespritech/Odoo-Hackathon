@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="custom_portal_my_home" inherit_id="portal.portal_my_home">
+            <xpath expr="//div[@id='portal_common_category']" position="after">
+                <!-- New div to add -->
+                <div class="o_portal_category row g-2 mt-3" id="portal_common_category">
+                        <t t-call="portal.portal_docs_entry" t-if="False"/>
+                        <t t-call="portal.portal_docs_entry">
+                            <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                            <t t-set="title">Groups Authentication</t>
+                            <t t-set="text">login with Groups</t>
+                            <t t-set="url" t-value="'/my/security'"/>
+                            <t t-set="config_card" t-value="True"/>
+                        </t>
+                    </div>
+               
+            </xpath>
+        </template>
+    </data>
+</odoo>
