@@ -1,24 +1,172 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
+
+        <template id="my_controller_form" name="Document Upload">
+            <t t-call="website.layout">
+                <div class="oe_structure"/>
+                <div class="container mt-5">
+                    <div id="wrap">
+                        <div class="oc-sheet clearfix">
+                            <form action="/submit_data"
+                                  method="post" name="formOrg" role="form"
+                                  style="z-index:1 !important; position:relative !important"
+                                  enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <div class="form-bg">
+                                        <h3 width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+                                        Grievance Portal
+                                        </h3>
+                                    </div>
+
+                                <div class="form-row mt-3">
+                                    <t t-set="employee_ids" t-value="request.env['hr.employee'].search([])"/>
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Employee :</label>
+                                        <select name='employee_id' id='employee_id' class="form-control mt-1" required='1'>
+                                            <option value="" selected="1" disabled="1"> Select Employee </option>
+                                            <t t-foreach="employee_ids" t-as="employee_id">
+                                                <option t-att-value="employee_id.id">
+                                                    <t t-esc="employee_id.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6" style="margin-left: 51%;margin-top: -67px;width:631px;">
+                                        <label for="description">Description :</label>
+                                        <input type="description" id="description" name="description" class="form-control mt-1" required='1'/>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <t t-set="grievance_types" t-value="request.env['grievance.type'].search([])"/>
+                                        <label for="email">Grievance Type :</label>
+                                        <select name='grievance_type' id='grievance_type' class="form-control mt-1" required='1'>
+                                            <option value="" selected="1" disabled="1"> Select Grievance Type  </option>
+                                            <t t-foreach="grievance_types" t-as="grievance_type">
+                                                <option t-att-value="grievance_type.id">
+                                                    <t t-esc="grievance_type.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <t t-set="departments" t-value="request.env['hr.department'].search([])"/>
+                                        <label for="email">Departments :</label>
+                                        <select name='department' id='department' class="form-control mt-1" required='1'>
+                                            <option value="" selected="1" disabled="1">  Select Department  </option>
+                                            <t t-foreach="departments" t-as="department">
+                                                <option t-att-value="department.id">
+                                                    <t t-esc="department.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                     <label for="severity">Severity:</label>
+                                        <select name="severity" id="severity" class="form-control mt-1">
+                                        <option value="" selected="1" disabled="1">  Select Severity </option>
+                                            <option value="0">Very Low</option>
+                                            <option value="1">Low</option>
+                                            <option value="2">Normal</option>
+                                            <option value="3">High</option>
+                                        </select>
+                                </div>
+                                     <div class="form-group mt-3">
+                                        <label for="files">Select files:</label>
+                                        <input type="file" id="document" name="document" class="form-control-file mt-1 ml-2" multiple="True"/><br/>
+                                    </div>
+                                    <div class="clearfix oe_login_buttons mt-3" style="margin-bottom:20px;">
+                                        <button name="submitDocument" id="submit_document" class="btn btn-primary" style="width: 100%;">Submit</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </t>
-          </dl>
         </template>
--->
+        <template id="RegisterMessage" name="Register Message">
+            <t t-call="website.layout">
+                <div class="oe_structure"/>
+                <div class="container mt-5">
+                    <div id="wrap1">
+                        <div class="oc-sheet clearfix">
+                            <form id="registerMsg" method="post" name="registerMsg" role="form" style="z-index:1 !important; position:relative !important" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <fieldset style="
+                                                width: 400px;
+                                                text-align: center;
+                                                margin-left: 30%;
+                                                background-color: rgba(255, 255, 255, 0.86);
+                                                float: left;
+                                                /* margin: 0px; */
+
+                                                z-index: 99999999;
+
+                                                /* height: 500px; */
+                                                display: block;
+                                                padding: 25px; border:solid #000 2px;">
+                                    <h3 align="center">Thank You!!! You are registered.... Your Grievance Ref : <t t-esc='grievance_id.name'/>
+                                    </h3>
+                                    <br/>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="portal_my_grievances" name="My Grievances">
+            <t t-call="portal.portal_layout">
+                <div class="container" style='margin-left:90%;'>
+                    <a href="/grievance/portal" class="oe_unremovable btn btn-primary btn_cta">New</a>
+                </div>
+
+
+                <t t-call="portal.portal_searchbar">
+                    <center>
+                        <t t-set="title">Your Grievances</t>
+                    </center>
+                </t>
+                <t t-if="records" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-center">Grievance #</th>
+                            <th class="text-center">Employee</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Department</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center"/>
+                        </tr>
+                    </thead>
+
+                    <t t-if="records" t-foreach="records" t-as="record">
+                        <tr>
+                            <!-- <td><a t-att-href="order.get_portal_url()"><t t-out="order.name"/></a></td> -->
+                            <td class="text-center">
+                                <t t-out="record.name"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="record.employee_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="record.grievance_type_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="record.department_id.name"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="record.create_date" t-options="{'widget': 'date'}"/>
+&amp;nbsp;
+                                <span class='d-none d-md-inline' t-field="record.create_date" t-options="{'time_only': True}"/>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
     </data>
 </odoo>

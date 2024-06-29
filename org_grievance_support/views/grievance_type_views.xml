@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="grievance_type_list">
+      <field name="name">Grievance Type</field>
+      <field name="model">grievance.type</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="grievance_type_form">
+      <field name="name">Grievance Type</field>
+      <field name="model">grievance.type</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="org_grievance_support.action_grievance_type">
+      <field name="name">Grievance Type</field>
+      <field name="res_model">grievance.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Grievance Type" id="org_grievance_support.sub_menu_grievance_type" parent="org_grievance_support.menu_configuration" action="org_grievance_support.action_grievance_type"/>
+
+  </data>
+</odoo>
