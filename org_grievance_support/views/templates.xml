@@ -7,85 +7,79 @@
                 <div class="container mt-5">
                     <div id="wrap">
                         <div class="oc-sheet clearfix">
-                            <form action="/submit_data" method="post" name="formOrg" role="form" style="z-index:1 !important; position:relative !important" enctype="multipart/form-data">
-                                <fieldset id="fs_data">
-                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <form action="/submit_data"
+                                  method="post" name="formOrg" role="form"
+                                  style="z-index:1 !important; position:relative !important"
+                                  enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
                                     <div class="form-bg">
                                         <h3 width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF" border-collapse="collapse" align="center">
                                         Grievance Portal
                                         </h3>
                                     </div>
+                                
+                                <div class="form-row mt-3">
                                     <t t-set="employee_ids" t-value="request.env['hr.employee'].search([])"/>
-
-                                    <div class="form-group mt-3">
+                                    <div class="form-group col-md-6">
                                         <label for="email">Employee :</label>
-                                        <select name='employee_id' id='employee_id' class="form-control" required='1'>
-                                            <option value="" selected="1" disabled="1">-- Select Employee --</option>
+                                        <select name='employee_id' id='employee_id' class="form-control mt-1" required='1'>
+                                            <option value="" selected="1" disabled="1"> Select Employee </option>
                                             <t t-foreach="employee_ids" t-as="employee_id">
                                                 <option t-att-value="employee_id.id">
                                                     <t t-esc="employee_id.name"/>
                                                 </option>
                                             </t>
                                         </select>
-
                                     </div>
-
-
-                                    <div class="form-group mt-3">
+                                    <div class="form-group col-md-6" style="margin-left: 51%;margin-top: -67px;width:631px;">
                                         <label for="description">Description :</label>
-                                        <input type="description" id="description" name="description" class="form-control" required='1'/>
+                                        <input type="description" id="description" name="description" class="form-control mt-1" required='1'/>
                                     </div>
+                                </div>
+                                <div class="form-group mt-3">
                                     <t t-set="grievance_types" t-value="request.env['grievance.type'].search([])"/>
-
-                                    <div class="form-group mt-3">
                                         <label for="email">Grievance Type :</label>
-                                        <select name='grievance_type' id='grievance_type' class="form-control" required='1'>
-                                            <option value="" selected="1" disabled="1">-- Select Grievance Type --</option>
+                                        <select name='grievance_type' id='grievance_type' class="form-control mt-1" required='1'>
+                                            <option value="" selected="1" disabled="1"> Select Grievance Type  </option>
                                             <t t-foreach="grievance_types" t-as="grievance_type">
                                                 <option t-att-value="grievance_type.id">
                                                     <t t-esc="grievance_type.name"/>
                                                 </option>
                                             </t>
                                         </select>
-
-                                    </div>
+                                </div>
+                                
+                                <div class="form-group mt-3">
                                     <t t-set="departments" t-value="request.env['hr.department'].search([])"/>
-                                    <div class="form-group mt-3">
                                         <label for="email">Departments :</label>
-                                        <select name='department' id='department' class="form-control" required='1'>
-                                            <option value="" selected="1" disabled="1">-- Select Department --</option>
+                                        <select name='department' id='department' class="form-control mt-1" required='1'>
+                                            <option value="" selected="1" disabled="1">  Select Department  </option>
                                             <t t-foreach="departments" t-as="department">
                                                 <option t-att-value="department.id">
                                                     <t t-esc="department.name"/>
                                                 </option>
                                             </t>
                                         </select>
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="severity">Severity:</label>
-                                        <select name="severity" id="severity" class="form-control">
-                                            <option value="" selected="1" disabled="1">-- Select Severity --</option>
+                                </div>
+                                
+                                <div class="form-group mt-3">
+                                     <label for="severity">Severity:</label>
+                                        <select name="severity" id="severity" class="form-control mt-1">
+                                        <option value="" selected="1" disabled="1">  Select Severity </option>
                                             <option value="0">Very Low</option>
                                             <option value="1">Low</option>
                                             <option value="2">Normal</option>
                                             <option value="3">High</option>
-                                            <!-- Add more options as needed -->
                                         </select>
-                                    </div>
-                                    <div class="form-group mt-3">
+                                </div>
+                                     <div class="form-group mt-3">
                                         <label for="files">Select files:</label>
-                                        <input type="file" id="document" name="document" class="form-control-file" multiple="True"/>
-                                        <br/>
-                                        <!-- <input type="file" id="document" name="document" class="form-control-file" required='1'/> -->
+                                        <input type="file" id="document" name="document" class="form-control-file mt-1 ml-2" multiple="True"/><br/>
                                     </div>
                                     <div class="clearfix oe_login_buttons mt-3" style="margin-bottom:20px;">
-                                        <button name="submitDocument" id="submit_document" class="btn btn-primary">Submit
-                                        </button>
+                                        <button name="submitDocument" id="submit_document" class="btn btn-primary" style="width: 100%;">Submit</button>
                                     </div>
-                                </fieldset>
                             </form>
                         </div>
                     </div>
@@ -126,15 +120,16 @@
 
         <template id="portal_my_grievances" name="My Grievances">
             <t t-call="portal.portal_layout">
+                <div class="container" style='margin-left:90%;'>
+                    <a href="/grievance/portal" class="oe_unremovable btn btn-primary btn_cta">New</a>
+                </div>
+                
 
                 <t t-call="portal.portal_searchbar">
                     <center>
                         <t t-set="title">Your Grievances</t>
                     </center>
                 </t>
-                <!-- <div t-if="not orders" class="alert alert-warning" role="alert">
-                  There are currently no Grievance for your account.
-              </div> -->
                 <t t-if="records" t-call="portal.portal_table">
                     <thead>
                         <tr class="active">

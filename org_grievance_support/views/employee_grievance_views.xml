@@ -42,7 +42,12 @@
                             <field name="description"/>
                             <field name="severity" widget="priority"/>
                             <field name="approver_id" />
-                            <field name="document_id" widget="url"/>
+                            
+                            
+                        </group>
+                        <group>
+                            <group><field name="document_ids" widget="many2many_tags"/></group>
+                            <group><button type='object' name='action_view_attachments' class="btn btn-primary" string='View Attchment' style='width:100%;!important'/></group>
                         </group>
                     </sheet>
                 </form>

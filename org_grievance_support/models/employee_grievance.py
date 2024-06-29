@@ -29,7 +29,7 @@ class EmployeeGrievance(models.Model):
         ('pending', 'Pending'), ('on_going', 'On Going'), ('resolved', 'Resolved')
     ], string="Status",default="pending",
         help="Grievance Status")
-    document_id = fields.Many2one('ir.attachment',string='Document')
+    document_ids = fields.Many2many('ir.attachment',string='Documents')
     is_resolve = fields.Boolean(compute="_compute_is_resolve")
 
     @api.model_create_multi
@@ -47,7 +47,6 @@ class EmployeeGrievance(models.Model):
 
     def send_notification(self,status):
         mail_template_id = self.env.ref("org_grievance_support.employee_notification_mail_template")
-        print("\n\n\n\n\n self.approver_id.name=========>>",self.approver_id.name)
         email_values = {'status': status,'email_from':self.env.company.email,'user':self.approver_id.name}
 
         mail_template_id.with_context(email_values).sudo().send_mail(self.id, force_send=True)
@@ -74,3 +73,13 @@ class EmployeeGrievance(models.Model):
         if self.status == 'on_going':
             self.status = 'resolved'
             self.send_notification('Resolved')
+
+    def action_view_attachments(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Attachments',
+            'view_mode': 'kanban',
+            'res_model': 'ir.attachment',
+            'view_id': self.env.ref('mail.view_document_file_kanban').id,
+            'domain': [('id', 'in', self.document_ids.ids)],
+        }
