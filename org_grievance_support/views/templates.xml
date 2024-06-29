@@ -29,6 +29,20 @@
                                     <label for="email">Email:</label>
                                     <input type="email" id="email" name="email" class="form-control"/>
                                 </div>
+                                <t t-set="department" t-value="request.env['hr.department'].search([)"/>
+                                <div class="form-group mt-3">
+                                    <select name="intent_site_district" t-att-id="intent_site_district" class="form-control intentSiteDistrict">
+                                        <option value="" selected="1" disabled="1">-- Select District --</option>
+                                        <t t-if='site_visit_id.district_ids'>
+                                                <t t-foreach="district_list" t-as="district">
+                                                <option t-att-value="district.id" t-att-data-district-name="district.name" t-att-selected="true if site_visit_id.district_ids and district_id.district_id.id == district.id else false ">
+                                                    <t t-esc="district.name" />
+                                                </option>
+                                            </t>
+                                        </t>
+
+                                    </select>
+                                </div>
                                     <div class="clearfix oe_login_buttons mt-3" style="margin-bottom:20px;">
                                         <button name="submitDocument" id="submit_document"
                                             class="btn btn-primary">Submit
