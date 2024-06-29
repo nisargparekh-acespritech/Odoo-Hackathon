@@ -30,7 +30,6 @@ class EmployeeGrievance(models.Model):
     ], string="Status",default="pending",
         help="Grievance Status")
     document_id = fields.Many2one('ir.attachment',string='Document')
-    is_resolve = fields.Boolean(compute="_compute_is_resolve")
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -40,16 +39,22 @@ class EmployeeGrievance(models.Model):
         res = super().create(vals_list)
         return res
 
-    def _compute_is_resolve(self):
-        for record in self:
-            if self.env.user:
-                pass
-
     def send_notification(self,status):
-        mail_template_id = self.env.ref("org_grievance_support.employee_notification_mail_template")
-        print("\n\n\n\n\n self.approver_id.name=========>>",self.approver_id.name)
-        email_values = {'status': status,'email_from':self.env.company.email,'user':self.approver_id.name}
+        """
+        Send a notification email to the approver when the grievance status changes.
 
+        This method retrieves the mail template for employee notifications, prepares the email values
+        with the current status, company email, and approver's name, and then sends the email.
+
+        Parameters:
+        status (str): The new status of the grievance.
+
+        Returns:
+        None
+        """
+
+        mail_template_id = self.env.ref("org_grievance_support.employee_notification_mail_template")
+        email_values = {'status': status,'email_from':self.env.company.email,'user':self.approver_id.name}
         mail_template_id.with_context(email_values).sudo().send_mail(self.id, force_send=True)
 
 

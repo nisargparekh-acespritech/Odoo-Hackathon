@@ -55,7 +55,7 @@ class OrgGrievanceSupport(http.Controller):
         }
 
     @http.route('/grievance/bar', auth='public', type='json')
-    def get_top_timesheet_employees(self):
+    def get_bar_graph(self):
         grievance_ids = request.env['employee.grievance'].search([])
         grievance_counts = {
             'pending': 0,
