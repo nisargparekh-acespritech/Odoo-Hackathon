@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="org_grievance_admin" model="res.groups">
+            <field name="name">Administrator</field>
+        </record>
+        <record id="org_grievance_employee" model="res.groups">
+            <field name="name">Employee</field>
+        </record>
+        <record id="org_grievance_user" model="res.groups">
+            <field name="name">User</field>
+        </record>
+    </data>
+</odoo>
