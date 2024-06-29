@@ -148,7 +148,7 @@ export class GrievanceDashboard extends Component {
                 title: {
                     display: true,
                     position: "top",
-                    text: " Time by Employees",
+                    text: " Status",
                     fontSize: 18,
                     fontColor: "#111"
                 },

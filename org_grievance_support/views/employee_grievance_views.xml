@@ -65,7 +65,7 @@
 
         <!-- Top menu item -->
 
-        <menuitem name="Grievance Support" id="org_grievance_support.menu_root"/>
+        <menuitem name="Grievance Support" id="org_grievance_support.menu_root" web_icon="org_grievance_support,static/description/grievance.png"/>
 
         <!-- menu categories -->
 
@@ -73,7 +73,12 @@
         <!-- actions -->
         <!-- Top menu item -->
 
-        <menuitem name="Grievance Support" id="org_grievance_support.menu_root" web_icon="org_grievance_support,static/description/grievance.png"/>
+        <menuitem name="Grievance" id="org_grievance_support.menu_grievance" parent="org_grievance_support.menu_root" sequence="1" />
+        <menuitem name="My Grievances" id="org_grievance_support.menu_my_requests" parent="org_grievance_support.menu_grievance" sequence="1" action="org_grievance_support.action_my_grievance_requests"/>
+        <menuitem name="All Grievances" id="org_grievance_support.menu_all_requests" parent="org_grievance_support.menu_grievance" sequence="2" action="org_grievance_support.action_all_grievance_requests" groups="org_grievance_support.org_grievance_admin"/>
+
+
+        <menuitem name="Configuration" id="org_grievance_support.menu_configuration" parent="org_grievance_support.menu_root" sequence="2" />
 
         <!-- menu categories -->
 

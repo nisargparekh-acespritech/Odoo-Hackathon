@@ -10,8 +10,10 @@ class OrgGrievanceSupport(http.Controller):
 
     @http.route('/submit_data', type='http', auth="public", website=True)
     def submit_grievance_data(self, **post):
+        print("\n\n\n\n\n\n post=========>>",post)
         name = post.get('name')
         email = post.get('email')
+
         grievance_id = request.env['employee.grievance'].sudo().create({
             'employee_id':post.get('employee_id') if post.get('employee_id') else False,
             'grievance_type_id':post.get('grievance_type') if post.get('grievance_type') else False,
@@ -32,7 +34,7 @@ class OrgGrievanceSupport(http.Controller):
             'on_going': 0,
             'resolved': 0
         }
-        
+
         for grievance in grievance_ids:
             if grievance.status in grievance_counts:
                 grievance_counts[grievance.status] += 1
@@ -44,7 +46,7 @@ class OrgGrievanceSupport(http.Controller):
             grievance_counts['resolved']
         ]
         colors = ['#F0FFFF', '#ADD8E6', '#87CEFA']
-        
+
         return {
             'grievance': grievance_state,
             'total': total_grievance,
@@ -59,7 +61,7 @@ class OrgGrievanceSupport(http.Controller):
             'on_going': 0,
             'resolved': 0
         }
-        
+
         for grievance in grievance_ids:
             if grievance.status in grievance_counts:
                 grievance_counts[grievance.status] += 1
@@ -70,7 +72,7 @@ class OrgGrievanceSupport(http.Controller):
             grievance_counts['resolved']
         ]
         state = ['Pending', 'On Going', 'Resolved']
-        
+
         return [total_count, state]
 
     @http.route('/grievance/datacount', auth='public', type='json')
