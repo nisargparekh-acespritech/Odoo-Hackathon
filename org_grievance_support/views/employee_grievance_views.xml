@@ -65,7 +65,7 @@
 
         <!-- Top menu item -->
 
-        <menuitem name="Grievance Support" id="org_grievance_support.menu_root"/>
+        <menuitem name="Grievance Support" id="org_grievance_support.menu_root" web_icon="org_grievance_support,static/description/grievance.png"/>
 
         <!-- menu categories -->
 
