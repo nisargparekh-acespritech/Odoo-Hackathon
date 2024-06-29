@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import http
+from odoo import http,_
 from odoo.http import request
+from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 class OrgGrievanceSupport(http.Controller):
 
@@ -86,3 +87,15 @@ class OrgGrievanceSupport(http.Controller):
             'ongoing_count': ongoing_count,
             'resolved_count': resolved_count,
         }
+
+    @http.route(['/my/grievance', '/my/grievance/page/<int:page>'], type='http', auth="user", website=True)
+    def show_grievance_records(self,**post):
+        employee_grievance = request.env['employee.grievance']
+        values = {}
+
+        records = employee_grievance.sudo().search([])
+        values.update({
+            'records': records,
+        })
+
+        return request.render("org_grievance_support.portal_my_grievances",values)
