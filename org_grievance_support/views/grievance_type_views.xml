@@ -36,8 +36,6 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-
-
     <menuitem name="Grievance Type" id="org_grievance_support.sub_menu_grievance_type" parent="org_grievance_support.menu_configuration" action="org_grievance_support.action_grievance_type"/>
 
   </data>

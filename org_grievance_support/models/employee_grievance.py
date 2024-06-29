@@ -25,8 +25,7 @@ class EmployeeGrievance(models.Model):
         required=True,
         help="Priority of the grievance")
     status = fields.Selection([
-        ('pending', 'Pending'), ('on_going', 'On Going'), ('resolved', 'Resolved')
-    ], string="Status",default="pending",
+        ('pending', 'Pending'), ('on_going', 'On Going'), ('resolved', 'Resolved')], string="Status",default="pending",
         help="Grievance Status")
     document_id = fields.Many2one('ir.attachment',string='Document')
 
