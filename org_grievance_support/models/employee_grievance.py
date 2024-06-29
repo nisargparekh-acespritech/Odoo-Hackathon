@@ -20,3 +20,7 @@ class EmployeeGrievance(models.Model):
     ], string="Severity",
         required=True,
         help="Priority of the grievance")
+    status = fields.Selection([
+        ('pending', 'Pending'), ('on_going', 'On Going'), ('resolved', 'Resolved')
+    ], string="Status",
+        help="Grievance Status")
