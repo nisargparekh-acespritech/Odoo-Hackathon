@@ -1,0 +1,64 @@
+.bg-draft {
+    background-color: #f96967;
+    color: white;
+}
+
+.bg-confirm {
+    background-color: #bce8f1;
+    color: #333;
+}
+
+.bg-inprogress {
+    background-color: #f2dede;
+    color: #333;
+}
+
+.custom-card {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.main-section {
+            margin: 20px;
+}
+.graph_view {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.graph_view h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+canvas {
+    display: block;
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+}
+
+/*.graph_view, .selling_product_graph_view {
+    box-shadow: 5px 11px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .graph_view, .selling_product_graph_view {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .oh-card-body {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .row-cols-md-2 > * {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+*/

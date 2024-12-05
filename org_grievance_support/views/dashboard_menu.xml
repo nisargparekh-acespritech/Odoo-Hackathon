@@ -9,7 +9,8 @@
         <menuitem id="menu_grievance_dashboard"
               name="Dashboard"
               action="action_grievance_dashboard"
+              groups="org_grievance_support.org_grievance_admin"
               parent="org_grievance_support.menu_root"
-              sequence="1"/>
+              sequence="2"/>
     </data>
 </odoo>
